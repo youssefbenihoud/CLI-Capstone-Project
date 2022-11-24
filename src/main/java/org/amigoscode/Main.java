@@ -1,14 +1,13 @@
 package org.amigoscode;
 
-import org.amigoscode.clicapstone.Booking.Booking;
 import org.amigoscode.clicapstone.Booking.BookingService;
 import org.amigoscode.clicapstone.Car.Car;
 import org.amigoscode.clicapstone.Car.CarService;
 import org.amigoscode.clicapstone.User.User;
-import org.amigoscode.clicapstone.User.UserDao;
 import org.amigoscode.clicapstone.User.UserService;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -30,39 +29,35 @@ public class Main {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    bookCar(carService, userService, bookingService, scanner);
-                    break;
-                case 2:
+                case 1 -> bookCar(carService, userService, bookingService, scanner);
+                case 2 -> {
                     System.out.println("View All User Booked Cars");
                     Arrays.stream(userService.findAll()).forEach(System.out::println);
                     String userId = scanner.next();
                     UUID userIdToUUID = UUID.fromString(userId);
-                    Arrays.stream(bookingService.findBookingByUser(userIdToUUID)).filter(user -> user != null).forEach(System.out::println);
-                    break;
-                case 3:
+                    Arrays.stream(bookingService.findBookingByUser(userIdToUUID)).filter(Objects::nonNull).forEach(System.out::println);
+                }
+                case 3 -> {
                     System.out.println("View All Bookings");
-                    Arrays.stream(bookingService.findAllBooking()).filter(booking -> booking != null).forEach(System.out::println);
-                    break;
-                case 4:
+                    Arrays.stream(bookingService.findAllBooking()).filter(Objects::nonNull).forEach(System.out::println);
+                }
+                case 4 -> {
                     System.out.println("View Available Cars");
-                    Arrays.stream(carService.findAvailableCars()).filter(car -> car != null).forEach(System.out::println);
-                    break;
-                case 5:
+                    Arrays.stream(carService.findAvailableCars()).filter(Objects::nonNull).forEach(System.out::println);
+                }
+                case 5 -> {
                     System.out.println("View Available Electric Cars");
                     Arrays.stream(carService.findAvailableElectricCars()).filter(eCar -> eCar != null).forEach(System.out::println);
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     System.out.println("View All Users");
                     Arrays.stream(userService.findAll()).forEach(System.out::println);
-                    break;
-                case 7:
+                }
+                case 7 -> {
                     System.out.println("Exit");
                     exit = true;
-                    break;
-                default:
-                    System.out.println(choice + "does not exist! try again!");
-                    break;
+                }
+                default -> System.out.println(choice + "does not exist! try again!");
             }
 
         }
@@ -71,7 +66,7 @@ public class Main {
 
     private static void bookCar(CarService carService, UserService userService, BookingService bookingService, Scanner scanner) {
         System.out.println("Book Car");
-        Arrays.stream(carService.findAvailableCars()).filter(car -> car != null).forEach(System.out::println);
+        Arrays.stream(carService.findAvailableCars()).filter(Objects::nonNull).forEach(System.out::println);
         System.out.println("select car reg number");
         String regNumber = scanner.next();
         Car chosenCar = carService.getCarByRegNumber(regNumber);
