@@ -32,7 +32,7 @@ public class Main {
                 case 1 -> bookCar(carService, userService, bookingService, scanner);
                 case 2 -> {
                     System.out.println("View All User Booked Cars");
-                    Arrays.stream(userService.findAll()).forEach(System.out::println);
+                    userService.findAll().forEach(System.out::println);
                     String userId = scanner.next();
                     UUID userIdToUUID = UUID.fromString(userId);
                     Arrays.stream(bookingService.findBookingByUser(userIdToUUID)).filter(Objects::nonNull).forEach(System.out::println);
@@ -51,7 +51,7 @@ public class Main {
                 }
                 case 6 -> {
                     System.out.println("View All Users");
-                    Arrays.stream(userService.findAll()).forEach(System.out::println);
+                    userService.findAll().forEach(System.out::println);
                 }
                 case 7 -> {
                     System.out.println("Exit");
@@ -70,7 +70,7 @@ public class Main {
         System.out.println("select car reg number");
         String regNumber = scanner.next();
         Car chosenCar = carService.getCarByRegNumber(regNumber);
-        Arrays.stream(userService.findAll()).forEach(System.out::println);
+        userService.findAll().forEach(System.out::println);
         String userId = scanner.next();
         UUID userIdToUUID = UUID.fromString(userId);
         User chosenUser = userService.getUserById(userIdToUUID);

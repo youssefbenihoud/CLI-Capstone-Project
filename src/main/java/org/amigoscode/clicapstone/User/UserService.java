@@ -1,14 +1,16 @@
 package org.amigoscode.clicapstone.User;
 
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
 
-    private UserDao userDao = new UserDao();
+    private UserArrayDataAccessService userArrayDataAccessService
+            = new UserArrayDataAccessService();
 
-    public User[] findAll(){
-        return userDao.getUsers();
+    public List<User> findAll(){
+        return userArrayDataAccessService.getUsers();
     }
 
     // find User by UUID

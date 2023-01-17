@@ -1,31 +1,29 @@
 package org.amigoscode.clicapstone.User;
 
 import java.io.*;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 public class UserArrayDataAccessService implements UserDao {
 
-    private static final User[] users;
 
-
-    static {
-        users = new User[]{
-                new User(UUID.fromString("8ca51d2b-aaaf-4bf2-834a-e02964e10fc3"), "James"),
-                new User(UUID.fromString("b10d126a-3608-4980-9f9c-aa179f5cebc3"), "Jamila")
-        };
-    }
 
     @Override
-    public User[] getUsers(){
+    public List<User> getUsers(){
         // Working with Files
         File file = createFile("src/main/java/org/amigoscode/users.csv");
         //writeFile(file, true);
 
+        List<User> users = new ArrayList<>();
         try {
             Scanner scanner = new Scanner(file);
             while(scanner.hasNext()){
-                System.out.println(scanner.nextLine());
+                String[] values = scanner.nextLine().split(",");
+                //System.out.println(values);
+                UUID uuid = UUID.fromString(values[0]);
+                String name = values[1];
+                //System.out.print(uuid.toString()+" --> "+name);
+                User user = new User(uuid, name);
+                users.add(user);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
