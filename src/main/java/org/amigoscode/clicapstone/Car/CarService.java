@@ -1,11 +1,11 @@
 package org.amigoscode.clicapstone.Car;
 
-import org.amigoscode.clicapstone.Booking.BookingDao;
+import org.amigoscode.clicapstone.Booking.BookingArrayDataAccessService;
 
 public class CarService {
 
-    private static CarDao carDao = new CarDao();
-    private static BookingDao bookingDao = new BookingDao();
+    private static CarArrayDataAccessService carDao = new CarArrayDataAccessService();
+    private static BookingArrayDataAccessService bookingDao = new BookingArrayDataAccessService();
 
     public static Car[] findAll() {
         return carDao.getCars();

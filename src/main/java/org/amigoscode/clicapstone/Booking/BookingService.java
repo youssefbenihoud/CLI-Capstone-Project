@@ -3,13 +3,11 @@ package org.amigoscode.clicapstone.Booking;
 import org.amigoscode.clicapstone.Car.Car;
 import org.amigoscode.clicapstone.User.User;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.UUID;
 
 public class BookingService {
 
-    private BookingDao bookingDao = new BookingDao();
+    private BookingArrayDataAccessService bookingDao = new BookingArrayDataAccessService();
 
     //TODO: Find All Booking Cars
     public Booking[] findAllBooking(){

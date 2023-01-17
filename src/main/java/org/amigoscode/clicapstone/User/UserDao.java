@@ -1,9 +1,13 @@
 package org.amigoscode.clicapstone.User;
 
+import java.io.IOException;
 import java.util.UUID;
 
-public class UserDao {
+public interface UserDao {
 
+    User[] getUsers() throws IOException;
+
+    /*
     private static final User[] users;
     static {
         users = new User[]{
@@ -14,4 +18,5 @@ public class UserDao {
     public User[] getUsers() {
         return users;
     }
+     */
 }
